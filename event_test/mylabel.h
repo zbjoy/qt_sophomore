@@ -11,12 +11,14 @@ class MyLabel : public QLabel
     Q_OBJECT
 public:
     explicit MyLabel(QWidget *parent = nullptr);
+
+    void keyPressEvent(QKeyEvent *ev);
 protected:
     void mousePressEvent(QMouseEvent *event);
 
     void mouseMoveEvent(QMouseEvent *ev);
 
-    void keyPressEvent(QKeyEvent *ev);
+    // void keyPressEvent(QKeyEvent *ev);
 
     bool event(QEvent *e);
 

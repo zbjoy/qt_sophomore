@@ -52,23 +52,27 @@ void MyLabel::keyPressEvent(QKeyEvent *ev)
 {
     int button = ev->key();
     QString str = "";
-    if(button & Qt::Key_A)
+    // if(button & Qt::Key_A)
+    if(button == Qt::Key_A)
     {
         str += "A;";
     }
-    if(button & Qt::Key_W)
+    // if(button & Qt::Key_W)
+    if(button == Qt::Key_W)
     {
         str += "W;";
     }
-    if(button & Qt::Key_S)
+    // if(button & Qt::Key_S)
+    if(button == Qt::Key_S)
     {
         str += "S;";
     }
-    if(button & Qt::Key_D)
+    // if(button & Qt::Key_D)
+    if(button == Qt::Key_D)
     {
         str += "D";
     }
-    str += "ppp";
+    //str += "ppp";
     qDebug() << "按键";
     this->setText(str);
 }

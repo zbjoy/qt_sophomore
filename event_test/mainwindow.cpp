@@ -10,7 +10,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     // this->setMouseTracking(true);
 
-    MyLabel* label = new MyLabel(this);
+    installEventFilter(this);
+
+    label = new MyLabel(this);
     //label->setMouseTracking(true);
     label->resize(this->width(), this->height());
     //label->show();
@@ -21,30 +23,15 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::keyPressEvent(QKeyEvent *ev)
+bool MainWindow::eventFilter(QObject *watched, QEvent *event)
 {
-    int button = ev->key();
-    QString str = "";
-    if(button & Qt::Key_A)
+    if(event->type() == QEvent::KeyPress)
     {
-        str += "A;";
+        this->label->keyPressEvent(static_cast<QKeyEvent*>(event));
+        return true;
     }
-    if(button & Qt::Key_W)
-    {
-        str += "W;";
-    }
-    if(button & Qt::Key_S)
-    {
-        str += "S;";
-    }
-    if(button & Qt::Key_D)
-    {
-        str += "D";
-    }
-    str += "ppp";
-    qDebug() << "按键";
-    //this->setText(str);
-
 }
+
+
 
 

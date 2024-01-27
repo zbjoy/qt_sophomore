@@ -19,10 +19,12 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-        void keyPressEvent(QKeyEvent *ev);
+    bool eventFilter(QObject *watched, QEvent *event);
 
 
 private:
     Ui::MainWindow *ui;
+
+    MyLabel* label;
 };
 #endif // MAINWINDOW_H
