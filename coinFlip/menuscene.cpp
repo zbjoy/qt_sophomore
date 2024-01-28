@@ -39,6 +39,11 @@ MenuScene::MenuScene(QWidget *parent)
             this->hide();
             playScene->setAttribute(Qt::WA_DeleteOnClose);
 
+            connect(playScene, &PlayScene::goNext, [=](int level)
+                    {
+                        playScene->setLevel(level);
+                    });
+
 
 
             connect(playScene, &PlayScene::btnBackClicked, [=](){

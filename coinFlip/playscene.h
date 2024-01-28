@@ -15,13 +15,15 @@ class PlayScene : public MainWindow
 public:
     PlayScene(int level, QWidget *parent = nullptr);
 
+    void setLevel(int level);
+
 protected:
     void paintEvent(QPaintEvent *event);
 
 private:
     MyPushButton* btnBack;
     QLabel* levelLabel;
-
+    QLabel* winLabel;
     coinPushButton* coinBtn[4][4];
 
     void flip(int row, int col);

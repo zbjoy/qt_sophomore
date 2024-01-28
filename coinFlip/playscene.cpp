@@ -57,6 +57,59 @@ PlayScene::PlayScene(int level, QWidget *parent)
 
 }
 
+void PlayScene::setLevel(int level)
+{
+    hasWin = false;
+    if(winLabel != NULL)
+    {
+        delete winLabel;
+        winLabel = NULL;
+    }
+
+    mLevel = level;
+    int xOffset = 57;
+    int yOffset = 200;
+
+    int colWidth = 50;
+    int rowHeight = 50;
+
+    dataConfig temp;
+    QVector<QVector<int>> data = temp.mData[level];
+    for(int i = 0; i < 16; ++i)
+    {
+        int row = i / 4;
+        int col = i % 4;
+
+        delete coinBtn[row][col];
+        coinBtn[row][col] = nullptr;
+
+        coinPushButton* coin = new coinPushButton(this);
+        // if(coin != NULL)
+        // {
+        //     qDebug() << i;
+        // }
+
+        coinBtn[row][col] = coin;
+        coin->resize(50, 50);
+        coin->move(xOffset + colWidth * col, yOffset + rowHeight * row);
+
+        //coin->setStatus(0);
+        coin->setStatus(data[row][col]);
+        coin->show();
+
+        connect(coin, &coinPushButton::clicked, [=](){
+
+            // coin->setStatus(!coin->status());
+            // coin->flip();
+            this->flip(row, col);
+
+        });
+    }
+    update();
+}
+
+
+
 void PlayScene::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
@@ -73,7 +126,7 @@ void PlayScene::paintEvent(QPaintEvent *event)
     levelLabel->resize(150, 50);
     levelLabel->move(30, this->height() - levelLabel->height());
 
-    // QWidget::paintEvent(event);
+    QMainWindow::paintEvent(event);
 }
 
 void PlayScene::flip(int row, int col)
@@ -130,7 +183,7 @@ void PlayScene::isWin()
     // qDebug() << "胜利";
     QSound::play(":/Music/res/LevelWinSound.wav");
     hasWin = true;
-    QLabel* winLabel = new QLabel(this);
+    winLabel = new QLabel(this);
     QPixmap pix;
     pix.load(":/Image/res/LevelCompletedDialogBg.png");
     winLabel->setPixmap(pix);
