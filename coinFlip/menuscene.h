@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "mainwindow.h"
 #include <QPainter>
+#include "playscene.h"
 
 #include "mypushbutton.h"
 
@@ -26,6 +27,7 @@ protected:
 
 private:
     MyPushButton* btnBack;
+    PlayScene* playScene;
 signals:
     void btnBackClicked();
 };

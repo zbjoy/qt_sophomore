@@ -9,16 +9,20 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    coinpushbutton.cpp \
     main.cpp \
     mainwindow.cpp \
     menuscene.cpp \
     mypushbutton.cpp \
+    playscene.cpp \
     startscene.cpp
 
 HEADERS += \
+    coinpushbutton.h \
     mainwindow.h \
     menuscene.h \
     mypushbutton.h \
+    playscene.h \
     startscene.h
 
 FORMS += \

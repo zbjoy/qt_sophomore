@@ -27,6 +27,18 @@ MenuScene::MenuScene(QWidget *parent)
         int col = i % 4;
         btn->move(xOffset + col * colWidth, yOffset + row * rowHeight);
         btn->setPixmap(":/Image/res/LevelIcon.png");
+
+        connect(btn, &MyPushButton::clicked, [=](){
+            playScene = new PlayScene(i + 1);
+            playScene->show();
+            this->hide();
+            playScene->setAttribute(Qt::WA_DeleteOnClose);
+
+            connect(playScene, &PlayScene::btnBackClicked, [=](){
+                playScene->close();
+                this->show();
+            });
+        });
     }
 }
 
