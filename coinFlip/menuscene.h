@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "mainwindow.h"
+#include <QPainter>
 
 #include "mypushbutton.h"
 
@@ -17,6 +18,11 @@ public:
     void btnZoom(bool); //down(true)  up(false)
 
     ~MenuScene();
+
+
+protected:
+
+    void paintEvent(QPaintEvent *event);
 
 private:
     MyPushButton* btnBack;

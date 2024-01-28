@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QPainter>
 #include <QPropertyAnimation>
+#include <QMouseEvent>
 
 class MyPushButton : public QPushButton
 {
@@ -15,14 +16,27 @@ public:
     void zoomDown();
     void zoomUp();
 
-    void setPixmap(QString str);
+    void setPixmap(QString str1, QString str2 = "");
 
 protected:
     void paintEvent(QPaintEvent *);
 
+    void mousePressEvent(QMouseEvent *e);
+    void mouseReleaseEvent(QMouseEvent* e);
+
 
 private:
-    QString pixmapPath;
+
+    enum buttonStatus
+    {
+        Normal,
+        Pressed
+    };
+
+    buttonStatus mStatus;
+    // QString pixmapPath;
+    QString normalImagePath;
+    QString pressedImagePath;
 
 signals:
 };

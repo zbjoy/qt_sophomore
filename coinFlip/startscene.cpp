@@ -25,18 +25,21 @@ StartScene::StartScene(QWidget *parent)
     });
 
     connect(menuScene, &MenuScene::btnBackClicked, [=](){
-        menuScene->setBtnEnabled(false);
-        menuScene->btnZoom(true);
-        QTimer::singleShot(150, [=](){
-            menuScene->btnZoom(false);
-        });
+        // menuScene->setBtnEnabled(false);
+        // menuScene->btnZoom(true);
+        // QTimer::singleShot(150, [=](){
+        //     menuScene->btnZoom(false);
+        // });
 
-        QTimer::singleShot(300, [=](){
-            menuScene->setBtnEnabled(true);
-            // menuScene->btnZoom(false);
-            menuScene->hide();
-            this->show();
-        });
+        // QTimer::singleShot(300, [=](){
+        //     menuScene->setBtnEnabled(true);
+        //     // menuScene->btnZoom(false);
+        //     menuScene->hide();
+        //     this->show();
+        // });
+
+        this->show();
+        menuScene->hide();
     });
 }
 
