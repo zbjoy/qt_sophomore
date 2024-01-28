@@ -1,5 +1,6 @@
 #include "startscene.h"
 #include <QTimer>
+#include <QSound>
 
 StartScene::StartScene(QWidget *parent)
     : MainWindow{parent}
@@ -11,16 +12,18 @@ StartScene::StartScene(QWidget *parent)
     btnStart->setPixmap(":/Image/res/MenuSceneStartButton.png");
 
     connect(btnStart, &MyPushButton::clicked, [=](){
+        QSound::play(":/Music/res/TapButtonSound.wav");
         btnStart->setEnabled(false);
         btnStart->zoomDown();
         QTimer::singleShot(150, [=](){
             btnStart->zoomUp();
         });
 
-        QTimer::singleShot(300, [=](){
+        QTimer::singleShot(620, [=](){
             btnStart->setEnabled(true);
             this->hide();
             menuScene->show();
+            menuScene->move(this->pos());
         });
     });
 
@@ -37,8 +40,9 @@ StartScene::StartScene(QWidget *parent)
         //     menuScene->hide();
         //     this->show();
         // });
-
+        QSound::play(":/Music/res/BackButtonSound.wav");
         this->show();
+        this->move(menuScene->pos());
         menuScene->hide();
     });
 }

@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QPainter>
 #include <QLabel>
+#include <QPushButton>
 #include "mainwindow.h"
 #include "mypushbutton.h"
 #include "coinpushbutton.h"
@@ -21,9 +22,19 @@ private:
     MyPushButton* btnBack;
     QLabel* levelLabel;
 
+    coinPushButton* coinBtn[4][4];
+
+    void flip(int row, int col);
+
+    void isWin();
+
+    bool hasWin;
+
     int mLevel;
 signals:
     void btnBackClicked();
+
+    void goNext(int goLevel);
 };
 
 #endif // PLAYSCENE_H

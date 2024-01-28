@@ -1,5 +1,6 @@
 #include "menuscene.h"
 #include <QMenuBar>
+#include <QSound>
 
 MenuScene::MenuScene(QWidget *parent)
     : MainWindow{parent}
@@ -28,17 +29,27 @@ MenuScene::MenuScene(QWidget *parent)
         btn->move(xOffset + col * colWidth, yOffset + row * rowHeight);
         btn->setPixmap(":/Image/res/LevelIcon.png");
 
+
+
         connect(btn, &MyPushButton::clicked, [=](){
+            QSound::play(":/Music/res/TapButtonSound.wav");
             playScene = new PlayScene(i + 1);
             playScene->show();
+            playScene->move(this->pos());
             this->hide();
             playScene->setAttribute(Qt::WA_DeleteOnClose);
 
+
+
             connect(playScene, &PlayScene::btnBackClicked, [=](){
-                playScene->close();
                 this->show();
+                this->move(playScene->pos());
+                playScene->close();
+
             });
         });
+
+
     }
 }
 

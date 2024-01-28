@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QPainter>
+#include <QTimerEvent>
+#include <QTimer>
 
 class coinPushButton : public QPushButton
 {
@@ -15,12 +17,23 @@ public:
     int status() const;
     void setStatus(int newStatus);
 
+    void flip();
+
+
 
 protected:
     void paintEvent(QPaintEvent *);
 
+    void timerEvent(QTimerEvent *e);
+
 private:
+
+    QTimer timer;
     int mStatus;
+
+    int timerId;
+
+    int mFrame;
 
 signals:
 };

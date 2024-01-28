@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     coinpushbutton.cpp \
+    dataconfig.cpp \
     main.cpp \
     mainwindow.cpp \
     menuscene.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
 
 HEADERS += \
     coinpushbutton.h \
+    dataconfig.h \
     mainwindow.h \
     menuscene.h \
     mypushbutton.h \
